@@ -1,0 +1,16 @@
+__pycache__
+.venv
+.env
+dist
+.vscode
+.idea
+.DS_Store
+.github/.DS_Store
+.coverage
+coverage.xml
+*.pyc
+db.sqlite3
+media
+tmp
+.htaccess
+passenger_wsgi.py
