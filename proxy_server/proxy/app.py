@@ -26,7 +26,7 @@ def get_page(**kwargs):
 
     logging.info(f'get request to {request.url}')
 
-    path = request.path
+    path = request.environ.get('RAW_URI')
     proxy_url = app.config.get('PROXY_URL')
     url = urljoin(proxy_url, path)
     response = session.request(method=request.method,
@@ -39,7 +39,6 @@ def get_page(**kwargs):
         soup = BeautifulSoup(response.text,
                              features='html.parser')
         soup = modify_content(soup)
-        print(request.base_url)
         soup = modify_resources(soup, proxy_url, request.base_url)
-        return soup.prettify()
+        return str(soup)
     return response.content
