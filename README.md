@@ -26,6 +26,8 @@ $ make run
 2. Avoid urls, words with hyphens and apostrophes
 3. Overwrite all local paths for assets and urls
 4. Don't touch text in css/js
+5. Modify `proxy_server/settings.py` to switch url for proxy
+6. Modify `gunicorn.conf.py` to setup Gunicorn
 
 ### Examples
 
