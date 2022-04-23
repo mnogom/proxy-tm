@@ -9,13 +9,33 @@ ADDITIONAL_TAGS = {
 }
 
 
-def _add_tm(text: str) -> str:
-    """Insert after every word with 6 letters symbol ™
+SIX_LETTERS_PATTERN = r'(\b[A-Za-z]{6}\b)'
+PATTERNS_TO_AVOID = {
+    # https://stackoverflow.com/a/48769624
+    'url': r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-&?=%.]+',
+    'hyphens_apostrophes': r'\b\w*[-\']\w*\b',
+}
+
+
+def _is_match_avoiding_patterns(word):
+    """Check if word matches with any pattern for avoiding."""
+    return any(re.match(pattern, word)
+               for pattern in PATTERNS_TO_AVOID.values())
+
+
+def _add_tm(input_string: str) -> str:
+    """Insert after every word with 6 letters symbol ™.
     :param text: text with words to modify
     :return: modify copy of input text
     """
 
-    return re.sub(r'(\b[A-Za-z]{6}\b)', r'\g<1>™', text)
+    output_string = []
+    for word in input_string.split(' '):
+        if _is_match_avoiding_patterns(word):
+            output_string.append(word)
+        else:
+            output_string.append(re.sub(SIX_LETTERS_PATTERN, r'\g<1>™', word))
+    return ' '.join(output_string)
 
 
 def _modify_custom_attrs(soup):

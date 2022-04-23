@@ -16,3 +16,4 @@ tmp
 passenger_wsgi.py
 proxy-logs.log
 .pytest_cache
+snippets
