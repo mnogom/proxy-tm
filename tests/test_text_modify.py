@@ -50,6 +50,9 @@ EXPECTED_TASK_TEXT = ('The visual™ description of the colliding files, at '
                           ('http://github.com', 'http://github.com'),
                           ('https://github.com', 'https://github.com'),
                           ('https://github.com/mnogom', 'https://github.com/mnogom'),
+                          ('Sprite™', 'Sprite™'),
+                          ('>Почему?', '>Почему™?'),
+                          ('джумле', 'джумле™'),
                           (INPUT_TASK_TEXT, EXPECTED_TASK_TEXT), ])
 def test_add_tm(input, expected):
     assert _add_tm(input) == expected

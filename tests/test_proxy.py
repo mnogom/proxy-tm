@@ -38,3 +38,9 @@ class BaseTestCase(TestCase):
             response = self.client.get('/')
             self.assertEqual(response.text, chars)
 
+    def test_http_status(self):
+        with requests_mock.Mocker() as m:
+            m.get(TEST_URL,
+                  status_code=404)
+            response = self.client.get('/')
+            self.assert404(response)
