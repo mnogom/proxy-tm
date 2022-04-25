@@ -45,7 +45,6 @@ def get_page(**kwargs):
     else:
         content = response.content
 
-    print(response.headers.items())
     proxy_response = make_response(content, response.status_code)
     proxy_response.headers = {'Content-Type': response_content_type}
     return proxy_response

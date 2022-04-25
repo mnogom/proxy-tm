@@ -54,5 +54,4 @@ class BaseTestCase(TestCase):
                   text='nothing',
                   headers={'Content-Type': content_type})
             response = self.client.get('/')
-            print(response.headers)
             self.assertEqual(response.headers['Content-Type'], content_type)
