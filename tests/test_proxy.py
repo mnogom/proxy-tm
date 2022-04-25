@@ -41,6 +41,18 @@ class BaseTestCase(TestCase):
     def test_http_status(self):
         with requests_mock.Mocker() as m:
             m.get(TEST_URL,
-                  status_code=404)
+                  status_code=404,
+                  text='page not found',
+                  headers={'Content-Type': 'text/html; charset=utf-8'})
             response = self.client.get('/')
             self.assert404(response)
+
+    def test_content_type(self):
+        content_type = 'text/plain; charset=utf-8'
+        with requests_mock.Mocker() as m:
+            m.get(TEST_URL,
+                  text='nothing',
+                  headers={'Content-Type': content_type})
+            response = self.client.get('/')
+            print(response.headers)
+            self.assertEqual(response.headers['Content-Type'], content_type)
