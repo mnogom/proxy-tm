@@ -28,8 +28,10 @@ def modify_resources(soup, proxy_url: str, app_url: str):
             if asset_url:
                 asset_parsed_url = urlparse(asset_url)
                 if asset_parsed_url.netloc == proxy_parsed_url.netloc:
+                    print(asset_parsed_url)
                     asset[attr] = urlunparse(
                         asset_parsed_url._replace(
+                            scheme=app_parsed_url.scheme,
                             netloc=app_parsed_url.netloc))
     logging.info('Resources was modified')
     return soup
