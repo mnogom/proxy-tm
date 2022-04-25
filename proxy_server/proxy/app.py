@@ -31,7 +31,8 @@ def get_page(**kwargs):
     url = urljoin(proxy_url, path)
     response = session.request(method=request.method,
                                url=url,
-                               data=request.data)
+                               data=request.form)
+    print(request.data)
     response_content_type = response.headers.get('Content-Type')
     logging.info(f'get response with content type: {response_content_type}')
 
