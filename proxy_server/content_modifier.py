@@ -9,11 +9,12 @@ ADDITIONAL_TAGS = {
 }
 
 
-SIX_LETTERS_PATTERN = r'(\b[A-Za-z]{6}\b)'
+SIX_LETTERS_PATTERN = r'(\b[^\d\W]{6}\b)'
 PATTERNS_TO_AVOID = {
     # https://stackoverflow.com/a/48769624
     'url': r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-&?=%.]+',
     'hyphens_apostrophes': r'\b\w*[-\']\w*\b',
+    'tm_ed': r'.*™.*'
 }
 
 
